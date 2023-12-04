@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./components/header/Header";
 import Search from "./components/search/Search";
-import AddProducts from "./components/+addproducts/AddProducts";
+import AddProducts from "./components/addProducts/AddProducts";
 import CardBody from "./components/cards/CardBody";
 import Button from "./components/button/Button";
 
@@ -18,11 +18,11 @@ const App = () => {
       .then((data) => setItem(data));
     console.count("hi");
   }, []);
-  function changingSrarchData(e) {
+  function changingSearchData(e) {
     setSearchValue(e.target.value);
   }
-  const itmesFilter = items.filter((item) =>
-    item.title.toLowerCase().includes(searchValue.toLowerCase())
+  const itemsFilter = items.filter((item) =>
+    item.title.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   function addItem(item) {
@@ -47,7 +47,7 @@ const App = () => {
             <Search
               products={items}
               value={searchValue}
-              onChangeData={changingSrarchData}
+              onChangeData={changingSearchData}
             />
             <Button num={addedItems.length} click={setShowAddProducts} />
           </div>
@@ -62,7 +62,7 @@ const App = () => {
           />
         )}
         <CardBody
-          products={itmesFilter}
+          products={itemsFilter}
           addItem={addItem}
           removeItem={removeItem}
           addedItems={addedItems}
